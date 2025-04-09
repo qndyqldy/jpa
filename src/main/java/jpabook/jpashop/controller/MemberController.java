@@ -47,6 +47,8 @@ public class MemberController {
 
     @GetMapping("")
     public String list(Model model) {
+        // entity -> dto 변환하는걸 추천
+        // API를 만들 때는 절대 entity를 넘기면 안됨
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
 
