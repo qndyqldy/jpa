@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -43,11 +44,17 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public String list(Model model) {
-        OrderSearch orderSearch = new OrderSearch();
+    public String list(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
 
         return "order/orderList";
+    }
+
+    @PostMapping("/orders/{orderId}/cancel")
+    public String cancel(@PathVariable("orderId") Long orderId) {
+        orderService.cancelOrder(orderId);
+
+        return "redirect:/orders";
     }
 }
