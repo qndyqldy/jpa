@@ -57,6 +57,17 @@ public class OrderApiController {
         return result;
     }
 
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithItem();
+
+        List<OrderDto> result = orders.stream()
+                .map(OrderDto::new)
+                .toList();
+
+        return result;
+    }
+
     // DTO 안에 Entity가 있으면 안됨!
     // OrderItem 도 DTO로 변경해줘야 함
     // value object는 노출해도 괜찮다
