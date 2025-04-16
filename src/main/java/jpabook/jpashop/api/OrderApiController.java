@@ -89,6 +89,11 @@ public class OrderApiController {
         return orderQueryRepository.findOrderQueryDtos();
     }
 
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> ordersV5() {
+        return orderQueryRepository.findAllByDto_optimization();
+    }
+
     // DTO 안에 Entity가 있으면 안됨!
     // OrderItem 도 DTO로 변경해줘야 함
     // value object는 노출해도 괜찮다
