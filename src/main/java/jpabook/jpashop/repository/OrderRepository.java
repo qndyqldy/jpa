@@ -71,4 +71,14 @@ public class OrderRepository {
         }
         return query.getResultList();
     }
+
+    // lazy 다 무시하고 값을 다 가져옴
+    // jpa 있는 문법 (fetch)
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
 }

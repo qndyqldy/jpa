@@ -53,6 +53,15 @@ public class OrderSimpleApiController {
         return list;
     }
 
+    // fetch join으로 쿼리 1번 호출 (JPA 기본편 참고)
+    @GetMapping("/api/v3/simple-orders")
+    public List<SimpleOrderDto> ordersV3() {
+        return orderRepository.findAllWithMemberDelivery()
+                .stream()
+                .map(SimpleOrderDto::new)
+                .toList();
+    }
+
     @Data
     @FieldDefaults(level = AccessLevel.PRIVATE)
     static class SimpleOrderDto {
