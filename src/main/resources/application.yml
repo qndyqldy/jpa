@@ -15,6 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_batch_fetch_size: 100 # size 중요함
 
         #show_sql: true # system out에 하이버네이트 실행 SQL을 남긴다
 

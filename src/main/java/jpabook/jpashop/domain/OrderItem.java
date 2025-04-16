@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.BatchSize;
 
+@BatchSize(size = 1000)
 @Entity
 @Table(name = "order_item")
 @Getter @Setter
