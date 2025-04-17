@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class MemberRepository {
+public class MemberRepositoryOld {
 
     private final EntityManager em;
 
@@ -27,9 +27,11 @@ public class MemberRepository {
                 .getResultList();
     }
 
-    public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
+    public List<Member> findMembersByName(String name) {
+        return em.createQuery("select m from Member m where m.name = :name order by m.name desc", Member.class)
                 .setParameter("name", name)
                 .getResultList();
     }
+
+
 }
