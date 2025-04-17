@@ -18,6 +18,7 @@ spring:
         default_batch_fetch_size: 100 # size 중요함
 
         #show_sql: true # system out에 하이버네이트 실행 SQL을 남긴다
+    open-in-view: false
 
 logging.level:
   org.hibernate.sql: debug # logger를 통해 하이버네이트 실행 SQL을 남긴다
